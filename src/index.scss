@@ -1,0 +1,165 @@
+$black: #0D1F22;
+$green: #264027;
+$light-green: #3C5233;
+$beige: #B38A58;
+
+html, body {
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+html {
+    background: rgba($beige, 0.1);
+}
+
+form {
+    .field {
+        margin-bottom: 1rem;
+    }
+
+    .inline-field {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+}
+
+
+fieldset {
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+}
+
+.notice {
+    padding: 0.5em;
+    background: rgba($beige, 0.2);
+}
+
+.flex-parent {
+    display: flex;
+
+    .flex { flex: 1 };
+}
+
+.workspace {
+    margin: 0 auto;
+
+    .flex-parent {
+        gap: 1em;
+        margin-bottom: 1rem;
+    }
+
+    textarea {
+        width: 100% !important;
+        height: 100%;
+        box-sizing: border-box;
+
+    }
+
+    label, input, textarea, select {
+        font-family: monospace;
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    input[type=range] {
+        vertical-align: middle;
+    }
+
+    fieldset {
+        &.editing {
+            border: 2px dashed lighten(blue, 30%);
+        }
+
+        > legend {
+            padding: 0.6rem;
+            background: lighten($light-green, 60%);
+        }
+
+        &.editing > legend {
+            background: lighten(blue, 40%);
+
+            &:before {
+                content: "Configure: ";
+            }
+        }
+
+        &[data-chart_type] { position: relative; }
+
+        &[data-chart_type=line], &[data-chart_type=scatter] {
+            flex: 1;
+        }
+
+        &[data-chart_type=table] {
+            max-height: 300px;
+            overflow: auto;
+        }
+
+        figure {
+            margin: 0;
+            height: 300px;
+        }
+
+        figure table {
+            border-collapse: collapse;
+        }
+
+        figure table td {
+            vertical-align: top;
+
+            &:not(:first-child) {
+                padding-left: 1rem;
+            }
+        }
+
+        figure table tr, figure table td {
+            border-bottom: 1px solid #aaa;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    fieldset[data-chart_type]  {
+        form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            overflow: auto;
+            padding: 1rem;
+        }
+
+        a[data-configure_chart_id] {
+            display: none;
+        }
+
+        &:not(.editing):hover a[data-configure_chart_id] {
+            display: inline;
+
+            color: black;
+            background: #eee;
+            padding: 0.2rem;
+            font-size: 0.7em;
+
+            position: absolute;
+            right: 1rem;
+            top: 0;
+            z-index: 1;
+
+            &:not(:hover) {
+                text-decoration: none;
+            }
+        }
+
+        a[data-cancel_configure_chart] {
+            position: absolute;
+            top: 0;
+            right: 1rem;
+        }
+    }
+}

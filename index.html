@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xsampler: Workspace</title>
+</head>
+<body>
+  <header>
+    Examples: <a href="dirichletk.html">Fourier Series</a>,
+              <a href="dft.html">Fourier Transform</a>,
+              <a href="logistic.html">Logistic Map</a>,
+              <a href="heat.html">Heat Equation</a>,
+              <a href="index.html">Workspace</a>
+  </header>
+
+  <div class="workspace">
+    <h1>Workspace</h1>
+
+    <div class="flex-parent display-area">
+    </div>
+
+    <form class="edit_lab_script" novalidate>
+      <div class="flex-parent">
+        <fieldset class="flex">
+          <legend>Source</legend>
+
+          <textarea id="lab_script_source" rows="8">
+x = linspace(-10, 10)
+plot(0, x, exp(-(x.^2)))
+          </textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Parameters</legend>
+
+          <ul data-params></ul>
+        </fieldset>
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Calculate" />
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="src/index.js"></script>
+</body>
+</html>

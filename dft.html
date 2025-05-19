@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xsampler: Discrete Fourier Transform</title>
+</head>
+<body>
+  <header>
+    Examples: <a href="dirichletk.html">Fourier Series</a>,
+              <a href="dft.html">Fourier Transform</a>,
+              <a href="logistic.html">Logistic Map</a>,
+              <a href="heat.html">Heat Equation</a>,
+              <a href="index.html">Workspace</a>
+  </header>
+
+  <div class="workspace">
+    <h1>Discrete Fourier Transform</h1>
+
+    <div class="flex-parent display-area">
+    </div>
+
+    <form class="edit_lab_script">
+      <div class="flex-parent">
+        <fieldset class="flex">
+          <legend>Source</legend>
+
+          <textarea id="lab_script_source" rows="8">
+w = param(0, linspace(0.1, 20), 1)
+n = param(1, colon(64, 512, 2), 256)
+
+t = linspace(-2*pi, 2*pi, n)
+y = transpose(sin(w*pi*t) ./ (w*pi*t))
+
+ps = (dft_r(n)*y).^2 + (dft_i(n)*y).^2
+ps = fftshift(transpose(ps))
+
+Fs = 1/(t(1) - t(0))
+f = linspace(-Fs/2, Fs/2, n)
+
+plot(0, t, y)
+plot(1, f, ps ./ max(ps))
+
+ylim(0, [-0.3 1.3])
+ylim(1, [0 1.3])
+</textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Parameters</legend>
+
+          <ul data-params></ul>
+        </fieldset>
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Calculate" />
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="src/index.js"></script>
+</body>
+</html>

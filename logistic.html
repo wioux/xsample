@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xsampler: The Logistic Map</title>
+</head>
+<body>
+  <header>
+    Examples: <a href="dirichletk.html">Fourier Series</a>,
+              <a href="dft.html">Fourier Transform</a>,
+              <a href="logistic.html">Logistic Map</a>,
+              <a href="heat.html">Heat Equation</a>,
+              <a href="index.html">Workspace</a>
+  </header>
+
+  <div class="workspace">
+    <h1>Bifurcations: The Logistic Map</h1>
+
+    <div class="flex-parent display-area">
+    </div>
+
+    <form class="edit_lab_script" novalidate>
+      <div class="flex-parent">
+        <fieldset class="flex">
+          <legend>Source</legend>
+
+          <textarea id="lab_script_source" rows="8">
+r = param(0, linspace(2, 4, 1600), 3.55);
+n = floor(param(1, colon(1, 100), 30))
+
+f = @(x) r*x.*(1-x);
+
+I = linspace(0, 1, 4000);
+scatter(0, I, iterate(f, n, I), I, I)
+scatter(1, I, iterate(f, n, I), I, I)
+
+ylim(0, [0 1])
+xlim(1, [0.45 0.55])
+ylim(1, [0.3 0.6])
+          </textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Parameters</legend>
+
+          <ul data-params></ul>
+        </fieldset>
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Calculate" />
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="src/index.js"></script>
+</body>
+</html>

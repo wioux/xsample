@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xsampler: Heat Equation (1D)</title>
+</head>
+<body>
+  <header>
+    Examples: <a href="dirichletk.html">Fourier Series</a>,
+              <a href="dft.html">Fourier Transform</a>,
+              <a href="logistic.html">Logistic Map</a>,
+              <a href="heat.html">Heat Equation</a>,
+              <a href="index.html">Workspace</a>
+  </header>
+
+  <div class="workspace">
+    <h1>Heat Equation (1D)</h1>
+
+    <div class="flex-parent display-area">
+    </div>
+
+    <form class="edit_lab_script">
+      <div class="flex-parent">
+        <fieldset class="flex">
+          <legend>Source</legend>
+
+          <textarea id="lab_script_source" rows="8">
+n = param(0, colon(0, 2000))
+r = param(1, linspace(0, 0.55), 0.4)
+
+x = linspace(-10, 10, 500)
+
+u0 = abs(x+3) < 2
+u0 += 1/2 * (abs(x) < 1/2)
+
+step = @(u) (1-2*r)*u + r*shift(u, -1) + r*shift(u, 1)
+
+plot(0, x, iterate(step, n, u0))
+ylim(0, [0 1.3])
+          </textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Parameters</legend>
+
+          <ul data-params></ul>
+        </fieldset>
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Calculate" />
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="src/index.js"></script>
+</body>
+</html>
